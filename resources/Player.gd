@@ -1,17 +1,31 @@
 extends KinematicBody2D
 
+signal died
+
+enum State {NORMAL, DASHING }
+
 var gravity = 790
 var velocity =Vector2.ZERO
 var maxSpeed = 140
 var horizontalAcceleration = 2000
 var JumpSpeed = 300
 var JumpTerminationMultiplier = 4
-var HasDoubleJump = false	
+var HasDoubleJump = false
+var CurrentState = State.NORMAL
 
 func _ready():
-	pass # Replace with function body.
+	$HazardArea.connect("area_entered", self, "on_hazard_area_entered")
 
 func _process(delta):
+	match CurrentState:
+		State.NORMAL:
+			process_normal(delta)
+		State.DASHING:
+			pass
+	
+
+
+func process_normal(delta):
 	var moveVector = _get_movement_vector()
 	
 	velocity.x += moveVector.x * horizontalAcceleration * delta
@@ -60,4 +74,11 @@ func update_animation():
 	
 	if (moveVector.x != 0):
 		$AnimatedSprite.flip_h = true if moveVector.x > 0 else false
+
+func on_hazard_area_entered(area2d):
+	emit_signal("died")
+
+
+
+
 
