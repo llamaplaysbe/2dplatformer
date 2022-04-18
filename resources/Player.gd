@@ -15,6 +15,7 @@ var horizontalAcceleration = 2000
 var JumpSpeed = 300
 var JumpTerminationMultiplier = 4
 var HasDoubleJump = false
+var hasDash = false
 var CurrentState = State.NORMAL
 var isStateNew = true
 
@@ -68,9 +69,11 @@ func process_normal(delta):
 	
 	if (is_on_floor()):
 		HasDoubleJump = true
+		hasDash = true
 	
-	if (Input.is_action_just_pressed("Dash")):
+	if (hasDash && Input.is_action_just_pressed("Dash")):
 		call_deferred("change_state", State.DASHING)
+		hasDash = false
 	
 	update_animation()
 
