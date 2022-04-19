@@ -5,7 +5,7 @@
 [ext_resource path="res://resources/tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://Scenes/GameCamera.tscn" type="PackedScene" id=6]
 
-[node name="Base_Level" type="Node"]
+[node name="Base_Level" type="Node" groups=["base_level"]]
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -21,6 +21,8 @@ backroundColor = Color( 0.87451, 0.964706, 0.960784, 1 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Flag" type="Node2D" parent="."]
 
 [node name="Hazards" type="Node2D" parent="."]
 

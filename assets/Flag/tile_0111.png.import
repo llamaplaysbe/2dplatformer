@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_0111.png-c9b990db69d88e95fe3eb1e4d5fd721c.stex"
+path="res://.import/tile_0111.png-6da6c70ec5a726fd8b174eb4efce1d7e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_pixelplatformer/Tiles/tile_0111.png"
-dest_files=[ "res://.import/tile_0111.png-c9b990db69d88e95fe3eb1e4d5fd721c.stex" ]
+source_file="res://assets/Flag/tile_0111.png"
+dest_files=[ "res://.import/tile_0111.png-6da6c70ec5a726fd8b174eb4efce1d7e.stex" ]
 
 [params]
 

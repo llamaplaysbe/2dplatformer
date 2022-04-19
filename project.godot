@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="2D platformer Course"
-run/main_scene="res://resources/Main.tscn"
+run/main_scene="res://Levels/Level_001.tscn"
 config/icon="res://icon.png"
 
 [display]

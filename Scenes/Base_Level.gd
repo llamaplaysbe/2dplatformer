@@ -1,12 +1,26 @@
 extends Node
 
+signal coin_total_changed
+
 var PlayerScene = preload("res://Scenes/Player.tscn")
 var SpawnPosition =  Vector2.ZERO
 var CurrentPlayerNode = null
+var totalCoins = 0
+var collectedCoins = 0
 
 func _ready():
 	SpawnPosition = $Player.global_position
 	register_player($Player)
+	
+	coin_total_changed(get_tree().get_nodes_in_group("coin").size())
+
+func coin_collected():
+	collectedCoins += 1
+	emit_signal("coin_total_changed", totalCoins, collectedCoins)
+	
+func coin_total_changed(NewTotal):
+	totalCoins = NewTotal
+	emit_signal("coin_total_changed", totalCoins, collectedCoins)
 
 func register_player(player):
 	CurrentPlayerNode = player
