@@ -26,6 +26,10 @@ func _ready():
 	defaultHazardMask = $HazardArea.collision_mask
 
 func _process(delta):
+	var currentPosition = position
+	
+	if (currentPosition.y > 400):
+		emit_signal("died")
 	match CurrentState:
 		State.NORMAL:
 			process_normal(delta)
@@ -118,4 +122,3 @@ func update_animation():
 
 func on_hazard_area_entered(_area2d):
 	emit_signal("died")
-
