@@ -1,21 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://resources/tileset2.0.tres" type="TileSet" id=1]
-[ext_resource path="res://kenney_pixelplatformer/Tiles/Player/character_0000.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 
-[node name="Node" type="Node"]
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 18, 18 )
-format = 1
-tile_data = PoolIntArray( 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0 )
-
-[node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 77, 54 )
-
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 2 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
+[node name="Main" type="Node"]
+script = ExtResource( 1 )

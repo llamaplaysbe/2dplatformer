@@ -24,6 +24,10 @@ config/name="2D platformer Course"
 run/main_scene="res://Levels/Level_001.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+LevelManger="*res://Scenes/LevelManger.tscn"
+
 [display]
 
 window/size/width=320

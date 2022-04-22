@@ -2,17 +2,20 @@ extends Node
 
 signal coin_total_changed
 
+export(PackedScene) var levelCompleteScene
+
 var PlayerScene = preload("res://Scenes/Player.tscn")
 var SpawnPosition =  Vector2.ZERO
-var CurrentPlayerNode = null
+var currentPlayerNode = null
 var totalCoins = 0
 var collectedCoins = 0
 
 func _ready():
 	SpawnPosition = $Player.global_position
 	register_player($Player)
-	
 	coin_total_changed(get_tree().get_nodes_in_group("coin").size())
+	
+	$Flag.connect("player_won", self, "on_player_won")
 
 func coin_collected():
 	collectedCoins += 1
@@ -23,15 +26,24 @@ func coin_total_changed(NewTotal):
 	emit_signal("coin_total_changed", totalCoins, collectedCoins)
 
 func register_player(player):
-	CurrentPlayerNode = player
-	CurrentPlayerNode.connect("died", self, "on_player_died", [], CONNECT_DEFERRED)
+	currentPlayerNode = player
+	currentPlayerNode.connect("died", self, "on_player_died", [], CONNECT_DEFERRED)
 
 func create_player():
 	var playerInstance = PlayerScene.instance()
-	add_child_below_node(CurrentPlayerNode, playerInstance)
+	add_child_below_node(currentPlayerNode, playerInstance)
 	playerInstance.global_position = SpawnPosition
 	register_player(playerInstance)
 	
 func on_player_died():
-	CurrentPlayerNode.queue_free()
+	currentPlayerNode.queue_free()
 	create_player()
+
+func on_player_won():
+	currentPlayerNode.queue_free()
+	var levelComplete = levelCompleteScene.instance()
+	add_child(levelComplete)
+		
+	
+	
+
