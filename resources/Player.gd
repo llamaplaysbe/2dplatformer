@@ -18,7 +18,6 @@ var HasDoubleJump = false
 var hasDash = false
 var CurrentState = State.NORMAL
 var isStateNew = true
-
 var defaultHazardMask = 0
 
 func _ready():
@@ -57,6 +56,7 @@ func process_normal(delta):
 	if (moveVector.y < 0 && (is_on_floor() || !$CoyoteTimer.is_stopped() || HasDoubleJump)):
 		velocity.y = moveVector.y * JumpSpeed
 		if (!is_on_floor() && $CoyoteTimer.is_stopped()):
+			$"/root/Helpers".apply_camara_shake(.75)
 			HasDoubleJump = false
 		$CoyoteTimer.stop()
 		
@@ -83,6 +83,7 @@ func process_normal(delta):
 
 func process_dash(delta):
 	if (isStateNew):
+		$"/root/Helpers".apply_camara_shake(.75)
 		$DashArea/CollisionShape2D.disabled = false
 		$AnimatedSprite.play("jump")
 		$HazardArea.collision_mask = dashHazardMask
@@ -121,4 +122,5 @@ func update_animation():
 		$AnimatedSprite.flip_h = true if moveVector.x > 0 else false
 
 func on_hazard_area_entered(_area2d):
+	$"/root/Helpers".apply_camara_shake(1)
 	emit_signal("died")
